@@ -1,5 +1,6 @@
 package com.yin.eventsampleproject;
 
+import com.yin.eventsampleproject.event.FirstEvent;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,10 @@ class CustomEventTest {
     void testCustomEventPublishing() {
         // Given
         String testMessage = "Test Message";
+        FirstEvent firstEvent = new FirstEvent(this, testMessage);
 
         // When
-        eventPublisher.publishEvent(testMessage);
+        eventPublisher.publishEvent(firstEvent);
 
         // Then
         assertThat(customEventListener.getMessage())
